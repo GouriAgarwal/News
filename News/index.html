@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desh Darshan - India's Cultural & Current Affairs Magazine</title>
+    
+    <!-- Using a modern font (Inter) and a serif headline font (Playfair Display) -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+    
+    <!-- Inline CSS for beginner-friendliness and "Indian" aesthetic -->
+    <style>
+        /* Color Palette: Deep Maroons, Saffron, and Gold Accents */
+        :root {
+            --primary-maroon: #800000; /* Deep Maroon/Red */
+            --accent-saffron: #FF9933; /* Saffron/Orange Accent */
+            --text-dark: #333333;
+            --text-light: #6a6a6a;
+            --bg-light: #f8f8f8;
+            --bg-white: #ffffff;
+
+            /* Fonts */
+            --heading-font: 'Playfair Display', serif;
+            --body-font: 'Inter', sans-serif;
+        }
+
+        /* Basic Reset and Body Styles */
+        body {
+            font-family: var(--body-font);
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+            scroll-behavior: smooth;
+        }
+        
+        /* Container to center content */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header and Navigation */
+        header {
+            background-color: var(--primary-maroon);
+            padding: 15px 0;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-family: var(--heading-font);
+            font-size: 32px;
+            font-weight: 900;
+            color: var(--accent-saffron);
+            text-decoration: none;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+        }
+        nav a {
+            color: var(--bg-light);
+            text-decoration: none;
+            margin-left: 25px;
+            font-size: 16px;
+            font-weight: 600;
+            padding: 5px 0;
+            transition: color 0.3s, border-bottom 0.3s;
+        }
+        nav a:hover {
+            color: var(--accent-saffron);
+            border-bottom: 2px solid var(--accent-saffron);
+        }
+        
+        /* Button Styling */
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 15px;
+            text-decoration: none;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+        .button.primary {
+            background-color: var(--accent-saffron);
+            color: var(--primary-maroon);
+        }
+        .button.primary:hover {
+            background-color: #ffb366; /* Lighter saffron on hover */
+            transform: translateY(-1px);
+        }
+
+        /* Hero/Featured Section */
+        .hero {
+            padding: 60px 0;
+            background-color: var(--bg-white);
+            border-bottom: 5px solid var(--accent-saffron);
+        }
+        .featured-article {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            text-align: left;
+        }
+        .featured-article img {
+            width: 50%;
+            height: auto;
+            max-height: 450px;
+            object-fit: cover;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        .featured-content {
+            width: 50%;
+        }
+        .featured-content .tag {
+            background-color: var(--primary-maroon);
+            color: var(--bg-white);
+            padding: 5px 10px;
+            font-size: 14px;
+            font-weight: 700;
+            border-radius: 3px;
+            margin-bottom: 10px;
+            display: inline-block;
+        }
+        .featured-content h1 {
+            font-family: var(--heading-font);
+            font-size: 44px;
+            line-height: 1.1;
+            color: var(--primary-maroon);
+            margin-top: 0;
+            margin-bottom: 15px;
+        }
+        .featured-content p {
+            font-size: 18px;
+            color: var(--text-light);
+            margin-bottom: 25px;
+        }
+
+        /* Topic Sections */
+        section {
+            padding: 60px 0;
+        }
+        h2.section-title {
+            font-family: var(--heading-font);
+            font-size: 36px;
+            text-align: center;
+            color: var(--primary-maroon);
+            margin-bottom: 50px;
+        }
+        
+        .article-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        .article-card {
+            background-color: var(--bg-white);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+        }
+        .article-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        }
+        .article-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            display: block;
+        }
+        .article-content {
+            padding: 20px;
+            text-align: left;
+        }
+        .article-content .topic-tag {
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--accent-saffron);
+            text-transform: uppercase;
+            margin-bottom: 5px;
+            display: block;
+        }
+        .article-content h3 {
+            font-family: var(--heading-font);
+            font-size: 22px;
+            color: var(--text-dark);
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+        .article-content .author-date {
+            font-size: 13px;
+            color: var(--text-light);
+        }
+
+        /* Subscription Section */
+        #subscribe {
+            background-color: var(--primary-maroon);
+            color: var(--bg-light);
+            text-align: center;
+        }
+        #subscribe h2 {
+            color: var(--accent-saffron);
+        }
+        .subscribe-form {
+            max-width: 500px;
+            margin: 0 auto;
+            display: flex;
+            gap: 10px;
+            margin-top: 30px;
+        }
+        .subscribe-form input[type="email"] {
+            flex-grow: 1;
+            padding: 12px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        .subscribe-form button {
+            background-color: var(--accent-saffron);
+            color: var(--primary-maroon);
+            padding: 12px 25px;
+            font-weight: 700;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--text-dark);
+            color: var(--bg-light);
+            padding: 30px 0;
+            text-align: center;
+            font-size: 14px;
+        }
+        footer a {
+            color: var(--accent-saffron);
+            text-decoration: none;
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 900px) {
+            .featured-article {
+                flex-direction: column;
+            }
+            .featured-article img,
+            .featured-content {
+                width: 100%;
+                max-height: 300px;
+            }
+            .featured-content h1 {
+                font-size: 36px;
+                margin-top: 20px;
+            }
+            .subscribe-form {
+                flex-direction: column;
+            }
+            .subscribe-form button {
+                width: 100%;
+            }
+        }
+        @media (max-width: 600px) {
+            .header-content {
+                flex-direction: column;
+            }
+            nav {
+                margin-top: 10px;
+            }
+            nav a {
+                margin: 0 10px;
+                font-size: 14px;
+            }
+            h2.section-title {
+                font-size: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container header-content">
+            <a href="#home" class="logo">Desh Darshan</a>
+            <nav>
+                <a href="#featured">Featured</a>
+                <a href="#politics">Politics</a>
+                <a href="#culture">Culture</a>
+                <a href="#subscribe">Subscribe</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        
+        <!-- Hero/Featured Article Section -->
+        <section id="featured" class="hero">
+            <div class="container">
+                <div class="featured-article">
+                    <img src="https://images.unsplash.com/photo-1628103131707-1e5491104e1e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1080&q=80" alt="Indian Parliament/Government Building">
+                    <div class="featured-content">
+                        <span class="tag">TOP STORY</span>
+                        <h1>The Next Decade: Analyzing India's Infrastructure Revolution</h1>
+                        <p>An in-depth report on the massive investment projects shaping the future of connectivity, commerce, and environmental sustainability across the subcontinent. From high-speed rail to solar parks, what does this mean for the common citizen?</p>
+                        <a href="#" class="button primary">Read Full Article</a>
+                        <div style="font-size: 14px; margin-top: 15px; color: var(--text-light);">By: **Anjali Rao** | October 2, 2025</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Politics Section -->
+        <section id="politics">
+            <div class="container">
+                <h2 class="section-title">National Politics</h2>
+                
+                <div class="article-grid">
+                    
+                    <!-- Article 1 -->
+                    <div class="article-card">
+                        <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Politician Speaking">
+                        <div class="article-content">
+                            <span class="topic-tag">Elections</span>
+                            <h3>Understanding the New State Assembly Dynamics</h3>
+                            <p>A breakdown of the surprising results from the recent state elections and their implications for the central government.</p>
+                            <div class="author-date">By V. Sharma | 2 hours ago</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Article 2 -->
+                    <div class="article-card">
+                        <img src="https://images.unsplash.com/photo-1628103131707-1e5491104e1e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Official Document">
+                        <div class="article-content">
+                            <span class="topic-tag">Policy</span>
+                            <h3>The Debate Over The New Education Bill</h3>
+                            <p>Experts weigh in on the proposed reforms and the projected impact on higher education access.</p>
+                            <div class="author-date">By Dr. P. Singh | Yesterday</div>
+                        </div>
+                    </div>
+
+                    <!-- Article 3 -->
+                    <div class="article-card">
+                        <img src="https://images.unsplash.com/photo-1557053530-3606626f21c2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Crowd gathering">
+                        <div class="article-content">
+                            <span class="topic-tag">Analysis</span>
+                            <h3>Regional Factions: A Look at Grassroots Mobilization</h3>
+                            <p>How local issues are driving political engagement in key northern states.</p>
+                            <div class="author-date">By K. Iyer | 3 days ago</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Culture Section -->
+        <section id="culture" style="background-color: var(--bg-white);">
+            <div class="container">
+                <h2 class="section-title">Arts & Culture</h2>
+                
+                <div class="article-grid">
+                    
+                    <!-- Article 4 -->
+                    <div class="article-card">
+                        <img src="https://images.unsplash.com/photo-1598929111818-47743d964f40?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Indian Architecture">
+                        <div class="article-content">
+                            <span class="topic-tag">Heritage</span>
+                            <h3>Restoring the Glory of Rajasthan's Stepwells</h3>
+                            <p>The delicate process of reviving ancient water architectures as cultural landmarks.</p>
+                            <div class="author-date">By S. Khatri | 5 hours ago</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Article 5 -->
+                    <div class="article-card">
+                        <img src="https://images.unsplash.com/photo-1517441865955-4424317f27a6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Indian Dancers">
+                        <div class="article-content">
+                            <span class="topic-tag">Performing Arts</span>
+                            <h3>The Evolution of Contemporary Indian Dance Forms</h3>
+                            <p>How traditional movements are blending with modern global styles on stage.</p>
+                            <div class="author-date">By G. Menon | 2 days ago</div>
+                        </div>
+                    </div>
+
+                    <!-- Article 6 -->
+                    <div class="article-card">
+                        <img src="https://images.unsplash.com/photo-1599573809633-c15f94d975a5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" alt="Indian Street Food">
+                        <div class="article-content">
+                            <span class="topic-tag">Cuisine</span>
+                            <h3>A Culinary Journey: Rediscovering Forgotten South Indian Recipes</h3>
+                            <p>Exploring the unique spices and techniques of coastal Andhra cuisine.</p>
+                            <div class="author-date">By R. Varma | 4 days ago</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Subscription Section -->
+        <section id="subscribe">
+            <div class="container">
+                <h2 class="section-title">Join the Desh Darshan Community</h2>
+                <p style="font-size: 18px; margin-bottom: 20px;">Get exclusive weekly digests, long-form essays, and priority access to events.</p>
+                
+                <form class="subscribe-form" onsubmit="handleSubscription(event)">
+                    <input type="email" id="s_email" name="email" placeholder="Enter your email address for free subscription" required>
+                    <button type="submit">Subscribe Now</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Desh Darshan Magazine. All Rights Reserved. | <a href="#">Privacy Policy</a></p>
+        </div>
+    </footer>
+
+    
+    <script>
+        // Simple JavaScript function to handle the subscription form submission
+        function handleSubscription(event) {
+            event.preventDefault(); // Stop the form from reloading the page
+
+            const email = document.getElementById('s_email').value;
+            
+            // Simple validation and console logging
+            if (!email) {
+                 alert('Please enter a valid email address.');
+                 return;
+            }
+
+            console.log('Subscription Request Submitted for:', email);
+
+            // Display success message (using a simple alert as required)
+            alert('Subscription successful! You are now part of the Desh Darshan community. Check your inbox to confirm.');
+
+            // Clear the form
+            event.target.reset();
+        }
+        
+        // Simple smooth scrolling for internal links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+
+                // Check if the link target is the top of the page (header/logo)
+                const targetId = this.getAttribute('href');
+                if (targetId === '#home' || targetId === '#featured') {
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                    return;
+                }
+
+                document.querySelector(targetId).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
